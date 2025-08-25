@@ -1,0 +1,267 @@
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+  margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+body {
+  /* 4. Add accessible line-height */
+  line-height: 1.5;
+  /* 5. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 6. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root,
+#__next {
+  isolation: isolate;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  padding: 24px;
+  border-bottom: solid 1px #eee;
+  text-align: center;
+}
+
+.main {
+  padding: 24px;
+  display: flex;
+  gap: 24px;
+  flex-direction: column;
+}
+
+.section {
+  border: solid 1px #eee;
+  padding: 12px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.items {
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+}
+
+.item {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  border: solid 1px #eee;
+  padding: 8px 12px;
+  border-radius: 12px;
+  min-height: 82px;
+}
+
+.item__group {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.image {
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 1;
+  max-width: 64px;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  padding: 6px;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+
+  width: fit-content;
+  font-family: system-ui, sans-serif;
+}
+
+.quantity-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  border: none;
+  border-radius: 10px;
+  background: #f4f4f4;
+
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.quantity-btn:hover {
+  background: #e0e0e0;
+}
+
+.quantity-btn:active {
+  transform: scale(0.9);
+  background: #d0d0d0;
+}
+
+.quantity-btn:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+.quantity-value {
+  min-width: 28px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: #222;
+}
+
+.delete-btn {
+  background: #ff4d4f;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 8px 12px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  font-family: system-ui, sans-serif;
+  font-weight: bold;
+}
+
+.delete-btn:hover {
+  background: #ff1a1f;
+  transform: scale(1.05);
+}
+
+.delete-btn:active {
+  transform: scale(0.95);
+  background: #e60000;
+}
+
+.delete-btn:focus {
+  outline: 2px solid #ff4d4f;
+  outline-offset: 2px;
+}
+
+.sticker {
+  display: inline-block;
+  border: 2px solid #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background: #fff;
+  padding: 2px;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  max-width: 64px;
+  height: 64px;
+  width: 64px;
+}
+
+.checkout-btn {
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 10px;
+  background: #007bff;
+
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.checkout-btn:active {
+  background: #64acf9;
+}
+
+.checkout-btn:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+.checkout-btn:disabled {
+  background: #9b9b9b;
+  opacity: 0.6;
+  cursor: not-allowed;
+  color: #ebebeb;
+}

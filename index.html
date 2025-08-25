@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ada - Carrinho de Compras</title>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1>Adesivos Rick and Morty</h1>
+      </header>
+      <main class="main">
+        <section class="section">
+          <h2>Produtos</h2>
+          <div class="items" id="products"></div>
+        </section>
+        <section class="section">
+          <h2>Carrinho de Compras</h2>
+          <div class="items" id="cart_products"></div>
+          <div class="item" id="cart_total">
+            <div class="item__group">
+              <h3>Total</h3>
+            </div>
+            <div class="item__group">
+              <output class="quantity-value">0</output>
+            </div>
+          </div>
+          <button disabled class="checkout-btn" id="cart_checkout">
+            Finalizar Compra
+          </button>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
