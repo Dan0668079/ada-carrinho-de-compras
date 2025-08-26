@@ -14,17 +14,47 @@
       <main class="main">
         <section class="section">
           <h2>Produtos</h2>
-          <div class="items" id="products"></div>
+          <div class="items" id="products">
+            <!-- item -->
+            <!-- 
+            <div class="item" data-id="1">
+              <div class="item__group">
+                <img src="image" alt="" class="sticker" />
+                <h3>Nome</h3>
+              </div>
+              <div class="item__group">
+                <div class="quantity-control">
+                  <button type="button" class="quantity-btn decrease">-</button>
+                  <span class="quantity-value" aria-live="polite">1</span>
+                  <button type="button" class="quantity-btn increase">+</button>
+                </div>
+                <button type="button" class="delete-btn" id="add-to-cart">
+                  &times;
+                </button>
+              </div>
+            </div> -->
+            <!-- item -->
+          </div>
         </section>
         <section class="section">
           <h2>Carrinho de Compras</h2>
-          <div class="items" id="cart_products"></div>
-          <div class="item" id="cart_total">
+          <div class="items" id="cart_products">
+            <!-- <div class="item">
+              <div class="item__group">
+                <img src="image" alt="" class="image" />
+                <h3>Nome</h3>
+              </div>
+              <div class="item__group">
+                <output class="quantity-value">1</output>
+              </div>
+            </div> -->
+          </div>
+          <div class="item">
             <div class="item__group">
               <h3>Total</h3>
             </div>
             <div class="item__group">
-              <output class="quantity-value">0</output>
+              <span id="cart_total" class="quantity-value">0</span>
             </div>
           </div>
           <button disabled class="checkout-btn" id="cart_checkout">
