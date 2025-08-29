@@ -213,6 +213,14 @@ h6 {
   background: #e60000;
 }
 
+.delete-btn:disabled {
+  background: #9b9b9b; /* cinza claro */
+  cursor: not-allowed;
+  opacity: 0.6;
+  color: #ebebeb;
+  transform: none; /* remove hover/active transform */
+}
+
 .delete-btn:focus {
   outline: 2px solid #ff4d4f;
   outline-offset: 2px;
@@ -264,4 +272,74 @@ h6 {
   opacity: 0.6;
   cursor: not-allowed;
   color: #ebebeb;
+}
+/* ----------------------
+   Mini-card do cupom
+   ---------------------- */
+#coupon_section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 1rem 0;
+  padding: 16px;
+  border-radius: 16px;
+  background-color: #f0fff0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 340px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#coupon_section:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+#coupon_section input[type="text"] {
+  padding: 10px;
+  border: 2px solid #4caf50;
+  border-radius: 10px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#coupon_section input[type="text"]:focus {
+  border-color: #388e3c;
+  box-shadow: 0 0 4px rgba(56, 142, 60, 0.5);
+}
+
+#coupon_section button {
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+#coupon_section button:hover {
+  background-color: #388e3c;
+  transform: scale(1.05);
+}
+
+#coupon_section button:active {
+  transform: scale(0.95);
+}
+
+#coupon_section .coupon-message {
+  font-size: 0.9rem;
+  min-height: 1.2rem;
+}
+
+#coupon_section .coupon-message.success {
+  color: #4caf50;
+  font-weight: bold;
+}
+
+#coupon_section .coupon-message.error {
+  color: #f44336;
+  font-weight: bold;
 }
