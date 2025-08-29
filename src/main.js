@@ -39,7 +39,14 @@ const getCartTotal = () =>
 const findCartItem = (id) => cartItems.find((item) => item.id === id);
 
 // Gera um preço aleatório para cada produto (a API não fornece preços)
-const getRandomPrice = () => Number((Math.random() * (50 - 10) + 10).toFixed(2));
+//const getRandomPrice = () => Number((Math.random() * (50 - 10) + 10).toFixed(2));
+
+// Preços reais dos produtos (como a API não fornece, definimos manualmente)
+const productPrices = {
+  1: 1.99,
+  2: 3.99,
+  3: 5.99
+};
 
 // ----------------------
 // API e Produtos
@@ -58,7 +65,7 @@ async function fetchProducts() {
       id: p.id,
       name: p.name,
       image: p.image,
-      price: getRandomPrice(), // atribui preço aleatório
+      price: productPrices[p.id], // atribui preço definido na tabela
     }));
 
     renderProducts(); // Renderiza os produtos na tela
@@ -201,3 +208,4 @@ window.addEventListener("DOMContentLoaded", () => {
   fetchProducts(); // Busca produtos da API
   renderCart();    // Renderiza carrinho (se houver dados no localStorage)
 });
+
