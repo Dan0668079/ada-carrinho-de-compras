@@ -15,6 +15,7 @@ const cartContainer = document.getElementById("cart_products"); // Lista do carr
 const cartTotalElement = document.getElementById("cart_total"); // Total de itens
 const checkoutBtn = document.getElementById("cart_checkout"); // Botão de finalizar compra
 
+
 // ----------------------
 // Estado da aplicação
 // ----------------------
@@ -23,6 +24,9 @@ const checkoutBtn = document.getElementById("cart_checkout"); // Botão de final
 let products = [];
 // Itens do carrinho (se já existir no localStorage, recupera; senão começa vazio)
 let cartItems = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+
+let appliedDiscount = 0; //Variável global para desconto no carrinho
+
 
 // ----------------------
 // Funções Utilitárias
@@ -39,7 +43,13 @@ const getCartTotal = () =>
 const findCartItem = (id) => cartItems.find((item) => item.id === id);
 
 // Gera um preço aleatório para cada produto (a API não fornece preços)
-const getRandomPrice = () => Number((Math.random() * (50 - 10) + 10).toFixed(2));
+//const getRandomPrice = () => Number((Math.random() * (50 - 10) + 10).toFixed(2));
+
+const productPrices = { // Preços reais dos produtos (como a API não fornece, definimos manualmente)
+  1: 1.99,
+  2: 3.99,
+  3: 5.99
+};
 
 // ----------------------
 // API e Produtos
@@ -58,7 +68,7 @@ async function fetchProducts() {
       id: p.id,
       name: p.name,
       image: p.image,
-      price: getRandomPrice(), // atribui preço aleatório
+      price: productPrices[p.id], // atribui preço definido na tabela
     }));
 
     renderProducts(); // Renderiza os produtos na tela
@@ -94,7 +104,7 @@ function renderProducts() {
           <span class="quantity-value">${quantity}</span>
           <button type="button" class="quantity-btn increase">+</button>
         </div>
-        <button type="button" class="delete-btn">&times;</button>
+        <button type="button" class="delete-btn" ${quantity === 0 ? "disabled" : ""}>&times;</button> 
       </div>
     `;
     productsContainer.appendChild(item);
@@ -127,9 +137,17 @@ function renderCart() {
     cartContainer.appendChild(cartEl);
   });
 
-  // Atualiza o total de compras
-  cartTotalElement.textContent = `R$ ${getCartTotal().toFixed(2)}`;
+  // Calcula total
+  let total = getCartTotal();
 
+  // Aplica desconto do cupom (se houver)
+  if (appliedDiscount > 0) {
+    total = total - total * appliedDiscount;
+  }
+  
+  // Atualiza o total de compras
+  cartTotalElement.textContent = `R$ ${total.toFixed(2)}`;
+  
   // Ativa ou desativa o botão de checkout
   checkoutBtn.disabled = cartItems.length === 0;
 
@@ -160,7 +178,7 @@ function updateCart(productId, action) {
   // Se excluir completamente
   if (action === "delete") {
     cartItems = cartItems.filter((i) => i.id !== productId);
-  }
+  } 
 
   // Atualiza a tela
   renderProducts();
@@ -184,6 +202,28 @@ productsContainer.addEventListener("click", (e) => {
   if (btn.classList.contains("delete-btn")) updateCart(productId, "delete");
 });
 
+// --- CUPOM ---
+const couponInput = document.getElementById("coupon_code");
+const applyCouponBtn = document.getElementById("apply_coupon");
+const couponMessage = document.getElementById("coupon_message");
+
+applyCouponBtn.addEventListener("click", () => {
+  const code = couponInput.value.trim().toUpperCase();
+
+  if (code === "BEMVINDO10") {
+    appliedDiscount = 0.1;
+    couponMessage.textContent = "Cupom aplicado: 10% de desconto!";
+  } else if (code === "SAUDADE20") {
+    appliedDiscount = 0.2;
+    couponMessage.textContent = "Cupom aplicado: 20% de desconto!";
+  } else {
+    appliedDiscount = 0;
+    couponMessage.textContent = "Cupom inválido.";
+  }
+
+  renderCart(); //  recalcula total com desconto
+});
+
 // Clique no botão de finalizar compra
 checkoutBtn.addEventListener("click", () => {
   alert("Compra finalizada com sucesso!");
@@ -201,3 +241,4 @@ window.addEventListener("DOMContentLoaded", () => {
   fetchProducts(); // Busca produtos da API
   renderCart();    // Renderiza carrinho (se houver dados no localStorage)
 });
+
